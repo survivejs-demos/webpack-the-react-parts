@@ -3,22 +3,21 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import Loadable from "react-loadable";
 import Lanes from "../components/Lanes.jsx";
 import { createLane } from "../actions/lanes";
 
 const App = ({ lanes, createLane }) => (
   <div>
-    <button
-      className="add-lane"
-      onClick={createLane.bind(null, {
-        name: "New lane"
-      })}
-    >
-      +
-    </button>
+    <LoadableAddLane createLane={createLane} />
     <Lanes lanes={lanes} />
   </div>
 );
+
+const LoadableAddLane = Loadable({
+  loader: () => import("../components/AddLane"),
+  loading: () => <div>Loading...</div>
+});
 
 export default compose(
   connect(

@@ -4,6 +4,9 @@
     "react",
     "survivejs-kanban"
   ],
+  "plugins": [
+    "syntax-dynamic-import"
+  ],
   "env": {
     "start": {
       "presets": [

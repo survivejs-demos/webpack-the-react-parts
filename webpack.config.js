@@ -95,9 +95,19 @@ const productionConfig = {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": `"production"`
     }),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: isVendor
+    })
   ]
 };
+
+function isVendor({ resource }) {
+  return (
+    resource && resource.indexOf("node_modules") >= 0 && resource.match(/\.js$/)
+  );
+}
 
 module.exports = env => {
   process.env.BABEL_ENV = env;

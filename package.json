@@ -7,6 +7,7 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "build": "rimraf build && webpack --env production",
+    "stats": "webpack --env production --profile --json > stats.json",
     "start": "webpack-dev-server --env development",
     "lint:js": "eslint app/ webpack.config.js --ext jsx"
   },

@@ -90,7 +90,10 @@ const productionConfig = {
   },
   plugins: [
     // Output extracted CSS to a file
-    new ExtractTextPlugin("styles.[contenthash].css")
+    new ExtractTextPlugin("styles.[contenthash].css"),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": `"production"`
+    })
   ]
 };
 

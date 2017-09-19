@@ -111,8 +111,6 @@ export default function lanes(state = initialState, action) {
         });
       }
 
-      return state;
-
     default:
       return state;
   }

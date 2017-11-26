@@ -67,6 +67,8 @@ const developmentConfig = {
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
+const isVendor = ({ resource }) => /node_modules/.test(resource);
+
 const productionConfig = {
   entry: {
     app: PATHS.app,
@@ -96,6 +98,10 @@ const productionConfig = {
       "process.env.NODE_ENV": `"production"`,
     }),
     new UglifyWebpackPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: isVendor,
+    }),
   ],
 };
 

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 
 const pkg = require("./package.json");
 
@@ -94,6 +95,7 @@ const productionConfig = {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": `"production"`,
     }),
+    new UglifyWebpackPlugin(),
   ],
 };
 

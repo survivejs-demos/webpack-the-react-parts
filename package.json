@@ -11,7 +11,10 @@
     "start": "webpack-dev-server --env development",
     "lint:js": "eslint app/ webpack.config.js --ext jsx"
   },
-  "keywords": ["webpack", "demo"],
+  "keywords": [
+    "webpack",
+    "demo"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -36,6 +39,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.1.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4",
     "webpack-merge": "^4.1.1"

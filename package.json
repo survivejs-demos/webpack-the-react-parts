@@ -7,13 +7,11 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "build": "rimraf build && webpack --env production",
+    "build:stats": "webpack --env production --json > stats.json",
     "start": "webpack-dev-server --env development",
     "lint:js": "eslint app/ webpack.config.js --ext jsx"
   },
-  "keywords": [
-    "webpack",
-    "demo"
-  ],
+  "keywords": ["webpack", "demo"],
   "author": "",
   "license": "MIT",
   "devDependencies": {

@@ -102,6 +102,9 @@ const productionConfig = {
       name: "vendor",
       minChunks: isVendor,
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest",
+    }),
   ],
 };
 

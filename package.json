@@ -7,14 +7,12 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "build": "rimraf build && webpack --env production",
+    "build:monitor": "webpack --env monitor",
     "build:stats": "webpack --env production --json > stats.json",
     "start": "webpack-dev-server --env development",
     "lint:js": "eslint app/ webpack.config.js --ext jsx"
   },
-  "keywords": [
-    "webpack",
-    "demo"
-  ],
+  "keywords": ["webpack", "demo"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -52,6 +50,7 @@
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "webpack-monitor": "^1.0.13"
   }
 }

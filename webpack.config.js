@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const WebpackMonitor = require("webpack-monitor");
 
 const pkg = require("./package.json");
 
@@ -108,11 +109,24 @@ const productionConfig = {
   ],
 };
 
+const monitorConfig = {
+  plugins: [
+    new WebpackMonitor({
+      capture: true,
+      launch: true,
+    }),
+  ],
+};
+
 module.exports = env => {
   process.env.BABEL_ENV = env;
 
   if (env === "development") {
     return merge(commonConfig, developmentConfig);
+  }
+
+  if (env === "monitor") {
+    return merge(commonConfig, productionConfig, monitorConfig);
   }
 
   return merge(commonConfig, productionConfig);

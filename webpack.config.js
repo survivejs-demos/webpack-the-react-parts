@@ -77,6 +77,17 @@ const productionConfig = {
     filename: "[name].[chunkhash].js",
     chunkFilename: "[chunkhash].js",
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
+  },
   module: {
     rules: [
       // Extract CSS during build

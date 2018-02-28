@@ -16,7 +16,7 @@ const noteTarget = {
     if (!targetProps.lane.notes.length) {
       targetProps.attachToLane(targetProps.lane.id, sourceId);
     }
-  }
+  },
 };
 
 class Lane extends React.Component {
@@ -29,26 +29,37 @@ class Lane extends React.Component {
       <div className={className}>
         <div
           className="lane-header"
-          onClick={() => props.updateLane({ id: laneId, editing: true })}
+          onClick={() =>
+            props.updateLane({ id: laneId, editing: true })
+          }
         >
           <div className="lane-add-note">
-            <button onClick={this.addNote.bind(this, laneId)}>+</button>
+            <button onClick={this.addNote.bind(this, laneId)}>
+              +
+            </button>
           </div>
           <Editable
             className="lane-name"
             editing={lane.editing}
             value={lane.name}
             onEdit={name =>
-              props.updateLane({ id: laneId, name, editing: false })}
+              props.updateLane({ id: laneId, name, editing: false })
+            }
           />
           <div className="lane-delete">
-            <button onClick={this.deleteLane.bind(this, lane)}>x</button>
+            <button onClick={this.deleteLane.bind(this, lane)}>
+              x
+            </button>
           </div>
         </div>
         <Notes
           notes={laneNotes}
-          onValueClick={id => props.updateNote({ id, editing: true })}
-          onEdit={(id, task) => props.updateNote({ id, task, editing: false })}
+          onValueClick={id =>
+            props.updateNote({ id, editing: true })
+          }
+          onEdit={(id, task) =>
+            props.updateNote({ id, task, editing: false })
+          }
           onDelete={(id, e) => this.deleteNote(laneId, id, e)}
         />
       </div>
@@ -71,7 +82,7 @@ class Lane extends React.Component {
     e.stopPropagation();
 
     const o = this.props.createNote({
-      task: "New task"
+      task: "New task",
     });
     this.props.attachToLane(laneId, o.note.id);
   }
@@ -89,15 +100,20 @@ export default compose(
   connect(
     (state, props) => ({
       laneNotes: props.lane.notes
-        .map(id => state.notes[state.notes.findIndex(note => note.id === id)])
-        .filter(note => note)
+        .map(
+          id =>
+            state.notes[
+              state.notes.findIndex(note => note.id === id)
+            ]
+        )
+        .filter(note => note),
     }),
     {
       ...laneActions,
-      ...noteActions
+      ...noteActions,
     }
   ),
   DropTarget(ItemTypes.NOTE, noteTarget, connect => ({
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
   }))
 )(Lane);

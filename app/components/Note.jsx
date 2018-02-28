@@ -6,12 +6,12 @@ import ItemTypes from "../constants/itemTypes";
 const noteSource = {
   beginDrag(props) {
     return {
-      id: props.id
+      id: props.id,
     };
   },
   isDragging(props, monitor) {
     return props.id === monitor.getItem().id;
-  }
+  },
 };
 
 const noteTarget = {
@@ -23,7 +23,7 @@ const noteTarget = {
     if (sourceId !== targetId) {
       targetProps.onMove({ sourceId, targetId });
     }
-  }
+  },
 };
 
 class Note extends React.Component {
@@ -44,7 +44,7 @@ class Note extends React.Component {
       connectDropTarget(
         <li
           style={{
-            opacity: isDragging ? 0 : 1
+            opacity: isDragging ? 0 : 1,
           }}
           {...props}
         >
@@ -58,9 +58,9 @@ class Note extends React.Component {
 export default compose(
   DragSource(ItemTypes.NOTE, noteSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
   })),
   DropTarget(ItemTypes.NOTE, noteTarget, connect => ({
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
   }))
 )(Note);

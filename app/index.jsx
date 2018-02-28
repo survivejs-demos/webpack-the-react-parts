@@ -15,4 +15,7 @@ store.subscribe(() => {
   }
 });
 
-ReactDOM.render(<Root store={store} />, document.getElementById("app"));
+ReactDOM.render(
+  <Root store={store} />,
+  document.getElementById("app")
+);

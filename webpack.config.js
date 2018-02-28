@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const WebpackMonitor = require("webpack-monitor");
 
 const pkg = require("./package.json");
@@ -42,7 +41,6 @@ const commonConfig = {
 };
 
 const developmentConfig = {
-  devtool: "eval-source-map",
   devServer: {
     historyApiFallback: true,
     hot: true,
@@ -98,21 +96,11 @@ const productionConfig = {
       filename: "styles.[contenthash].css",
       allChunks: true,
     }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": `"production"`,
-    }),
-    new UglifyWebpackPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: isVendor,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest",
-    }),
   ],
 };
 
 const monitorConfig = {
+  mode: "development",
   plugins: [
     new WebpackMonitor({
       capture: true,
@@ -121,16 +109,14 @@ const monitorConfig = {
   ],
 };
 
-module.exports = env => {
-  process.env.BABEL_ENV = env;
-
-  if (env === "development") {
-    return merge(commonConfig, developmentConfig);
+module.exports = mode => {
+  if (mode === "development") {
+    return merge(commonConfig, developmentConfig, { mode });
   }
 
-  if (env === "monitor") {
+  if (mode === "monitor") {
     return merge(commonConfig, productionConfig, monitorConfig);
   }
 
-  return merge(commonConfig, productionConfig);
+  return merge(commonConfig, productionConfig, { mode });
 };

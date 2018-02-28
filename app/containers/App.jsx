@@ -11,7 +11,7 @@ const App = ({ lanes, createLane }) => (
     <button
       className="add-lane"
       onClick={createLane.bind(null, {
-        name: "New lane"
+        name: "New lane",
       })}
     >
       +
@@ -23,10 +23,10 @@ const App = ({ lanes, createLane }) => (
 export default compose(
   connect(
     state => ({
-      lanes: state.lanes
+      lanes: state.lanes,
     }),
     {
-      createLane
+      createLane,
     }
   ),
   DragDropContext(HTML5Backend)

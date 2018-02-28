@@ -66,8 +66,6 @@ const developmentConfig = {
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
-const isVendor = ({ resource }) => /node_modules/.test(resource);
-
 const productionConfig = {
   entry: {
     app: PATHS.app,

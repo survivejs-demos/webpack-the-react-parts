@@ -9,13 +9,15 @@ const APP_STORAGE = "redux_kanban";
 
 const store = configureStore(storage.get(APP_STORAGE) || {});
 
+const app = document.createElement("div");
+document.body.appendChild(app);
+
+console.log("at index");
+
 store.subscribe(() => {
   if (!storage.get("debug")) {
     storage.set(APP_STORAGE, store.getState());
   }
 });
 
-ReactDOM.render(
-  <Root store={store} />,
-  document.getElementById("app")
-);
+ReactDOM.render(<Root store={store} />, app);

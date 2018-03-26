@@ -32,10 +32,7 @@ const commonConfig = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: require("html-webpack-template"),
       title: "Kanban app",
-      appMountId: "app",
-      inject: false,
     }),
   ],
 };

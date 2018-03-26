@@ -76,6 +76,9 @@ const productionConfig = {
     splitChunks: {
       chunks: "initial",
     },
+    runtimeChunk: {
+      name: "manifest",
+    },
   },
   module: {
     rules: [
